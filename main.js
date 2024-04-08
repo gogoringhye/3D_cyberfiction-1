@@ -1,16 +1,16 @@
 function locomotive() {
-  gsap.registerPlugin(ScrollTrigger); //ScrollTrigger를 통해 스크롤 애니메이션을 관리하기위한 도구입니다.
+  gsap.registerPlugin(ScrollTrigger); //ScrollTrigger를 통해 스크롤 애니메이션을 관리하기 위한 도구
 
   /* SMOOTH SCROLL */
   const locoScroll = new LocomotiveScroll({
     el: document.querySelector("#main"),
     smooth: true,
   });
-  //locoScroll객체를 생성, 스크롤 관련 동작을 제어하는데 사용됩니다.
-  // el: document.querySelector("#main")--> #main이라는 CSS선택자로 해당하는 HTML요소를 스크롤 컨테이너로 지정합니다.(#main영역이 LocomotiveScroll이 적용되는 범위이다)
+  //locoScroll 객체를 생성, 스크롤 관련 동작을 제어하는데 사용됨
+  // el: document.querySelector("#main")--> #main이라는 CSS선택자로 해당하는 HTML요소를 스크롤 컨테이너로 지정, (#main영역이 LocomotiveScroll이 적용되는 범위)
   //smooth: true  --> 부드러운 스크롤을 활성화합니다.
 
-  locoScroll.on("scroll", ScrollTrigger.update); //LocomotiveScroll의 Scroll 이벤트가 발생할때마다 ScrollTrigger의 update함수를 호출합니다. 이것은 스크롤 이벤트와 ScrollTrigger간의 연동을 설정합니다.
+  locoScroll.on("scroll", ScrollTrigger.update); //LocomotiveScroll의 Scroll 이벤트가 발생할때마다 ScrollTrigger의 update함수를 호출, 이것은 스크롤 이벤트와 ScrollTrigger간의 연동을 설정함
 
   ScrollTrigger.scrollerProxy("#main", {
     scrollTop(value) {
@@ -18,7 +18,7 @@ function locomotive() {
         ? locoScroll.scrollTo(value, 0, 0)
         : locoScroll.scroll.instance.scroll.y;
     },
-    //ScrollTrigger의 스크롤프록시(스크롤에 대한 인테페이스를 제어,조작)를 설정한다. 이 부분은 ScrollTrigger가 LocomotiveScroll와 함께 작동하도록 만듦
+    //ScrollTrigger의 스크롤프록시(스크롤에 대한 인테페이스를 제어,조작)를 설정, 이 부분은 ScrollTrigger가 LocomotiveScroll와 함께 작동하도록 만듦
 
     getBoundingClientRect() {
       return {
@@ -33,10 +33,10 @@ function locomotive() {
       : "fixed",
   }); //pinType은 #main 요소의 스타일 속성 transform이 설정되어 있으면 transform으로 , 그렇지 않으면 "fixed"로 설정함
 
-  // "refresh" 이벤트를 감지하면 locoScroll.update() 함수를 호출하여 LocomotiveScroll을 업데이트합니다. 스크롤 컨테이너나 내용이 동적으로 변경될 때 사용됩니다.
+  // "refresh" 이벤트를 감지하면 locoScroll.update() 함수를 호출하여 LocomotiveScroll를 업데이트하고 스크롤 컨테이너나 내용이 동적으로 변경될 때 사용됨
   ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
 
-  ScrollTrigger.refresh(); //ScrollTrigger를 초기화하고 설정을 적용합니다.
+  ScrollTrigger.refresh(); //ScrollTrigger를 초기화하고 설정을 적용
 }
 locomotive();
 //---------------------------------------------
@@ -355,9 +355,6 @@ function canvas() {
      ./img/male0298.png
      ./img/male0299.png
      ./img/male0300.png`;
-
- 
-
     return data.split("\n")[index];
   }
 
@@ -470,20 +467,10 @@ gsap.to("#page3", {
     }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
 // javascript에서 img태그를 만드는 방법
+
 //<img src="" alt="">
+
 // 1) let imgEle=document.createElement('img')
 // imgEle.src="이미지경로";
 // imgEle.alt="이미지설명";
