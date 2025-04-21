@@ -4,54 +4,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>cyberfiction</title>
-  <link rel="shortcut icon" href="img/favicon.jpg" type="image/x-icon">
+  <title>Document</title>
   <link href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-
-  <!-- remixicon css cdn 연결 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.6.0/remixicon.min.css" />
 </head>
 
 <body>
+  <!-- https://cyberfiction.io/ 참고 -->
 
-  <header class="header" id="header">
-    <nav class="nav container">
-      <a href="javascript:void(0)" class="nav_logo">
-        <b>CYBERFICTION*</b>
-      </a>
-      <div class="nav_menu" id="nav_menu">
-        <ul class="nav_list">
-          <li class="nav_item">
-            <a href="#home" class="nav_link">Home</a>
-          </li>
-          <li class="nav_item">
-            <a href="#about" class="nav_link">About Us</a>
-          </li>
-          <li class="nav_item">
-            <a href="#popular" class="nav_link">Popular</a>
-          </li>
-          <li class="nav_item">
-            <a href="#recently" class="nav_link">recently</a>
-          </li>
-        </ul>
-        <div class="nav_close" id="nav_close">
-          <i class="ri-close-fill"></i><!-- remixicon -->
-        </div>
-      </div>
-      <!-- nav_menu -->
-      <div class="nav_buttons">
-        <!-- 배경색 변경 -->
-        <i class="ri-moon-clear-line change-theme" id="theme-button"></i><!-- remixicon -->
-
-        <!-- 반응형에서 보이는 메뉴 버튼 -->
-        <div class="nav_toggle" id="nav_toggle">
-          <i class="ri-apps-2-line"></i><!-- remixicon -->
-        </div>
-      </div>
-    </nav>
-  </header>
-
+  <div id="nav">
+    <h3><b>CYBER</b> FICTION*</h3>
+    <button>APRIL,2025</button>
+  </div>
   <div id="main">
     <div id="page">
       <div id="loop">
@@ -128,7 +92,8 @@
               REST. THE WORLD THAT CYBERFICTION WILL CREATE! WE WILL CREATE AND OWN.</p>
             <p>사이버 필드는 우리들의 놀이터!
               그곳은 남태평양의 눈부신 해변이고, 알프스 산맥의 눈보라치는 언덕이고, 때로는 지구가 보이는 달 그 어딘가 일 것이다. 우리는 그곳에서 파티를 열고, 어드벤쳐를 경험하고, 조용한 휴식도 즐길
-              수 있겠지. 사이버픽션이 만들어갈 세상! 우리가 만들고 소유할 것이다.</p>
+              수 있겠지. 사이버픽션이 만들어갈 세상! 우리가 만들고 소유할 것이다. 우리의 이야기에 공감했다면, 함께 만들어가고 싶다면, 혹은 그냥 궁금한 게 있다면, 언제든지 편하게 연락 주세요.
+            </p>
           </div>
           <div class="section-inner-con t-right top-plus">
             <div class="s-tit">
@@ -143,280 +108,9 @@
       </div>
     </div><!-- //page3 -->
 
-    <!-- contents -->
-    <div>
-      <section class="home section" id="home">
-        <div class="home_container container grid">
-          <img src="img/home-havefun.png" alt="home-havefun" class="home_img" />
-          <div class="home_data">
-            <h1 class="home_title">
-              Dive into the Virtual Reality Adventure
-            </h1>
-            <p class="home_description">
-              Explore limitless possibilities in a virtual world and create your own
-              3D avatar experience today.
-            </p>
-            <a href="javascript:void(0)" class="button">
-              Start Your Journey <i class="ri-arrow-right-line"></i>
-            </a>
-          </div>
-        </div>
-        <img src="img/avatar1.png" alt="avatar1" class="home_avatar-1" />
-        <img src="img/avatar2.png" alt="avatar2" class="home_avatar-2" />
-      </section>
-
-      <!-- home -->
-      <section class="about section" id="about">
-        <div class="about_container container grid">
-          <div class="about_data">
-            <span class="section_subtitle">About us</span>
-            <h2 class="section_title about_title">
-              <div>
-                We Create
-                <img src="img/about-earth-title.png" alt="about-earth-title" />
-              </div>
-              3D Avatars for the Metaverse
-            </h2>
-            <p class="about_description">
-              In the metaverse, your avatar is more than just a representation—it's an extension of your digital self.
-              We design and create customizable 3D avatars that allow users to explore virtual worlds, socialize, and
-              express themselves. Our mission is to bring your virtual identity to life, giving you the tools to
-              interact and thrive in the digital universe.
-            </p>
-          </div>
-          <!-- about_data -->
-          <img src="img/about-house.png" alt="about-house" class="about-house" />
-          <img src="img/avatar3.png" alt="avatar3" class="about_avatar" />
-        </div>
-      </section>
-      <!-- about -->
-      <section class="popular section" id="popular">
-        <span class="section_subtitle">Why Choose Us?</span>
-        <h2 class="section_title">Our experts put their best foot forward for each and every project</h2>
-        <div class="popular_container container grid">
-          <!-- popular_card  -->
-          <article class="popular_card">
-            <img src="img/popular-img-1.png" alt="popular-img-1" class="popular_img" />
-            <h3 class="popular_name">Immersive Experiences</h3>
-            <span class="popular_description">By employing VR and AR tech, we craft spaces that captivate and offer
-              interactive elements that create a rich user experience, be it virtual showroom or educational
-              spaces.</span>
-            <button class="popular_button">
-              <i class="ri-external-link-line"></i>
-            </button>
-          </article>
-          <!-- popular_card  -->
-          <article class="popular_card">
-            <img src="img/popular-img-2.png" alt="popular-img-2" class="popular_img" />
-            <h3 class="popular_name">End-to-End Customization</h3>
-            <span class="popular_description">You have the freedom to customize your space. From layout and design to
-              textures and lighting, our team will work closely with you to bring your vision to life.</span>
-            <button class="popular_button">
-              <i class="ri-external-link-line"></i>
-            </button>
-          </article>
-          <!-- popular_card  -->
-          <article class="popular_card">
-            <img src="img/popular-img-3.png" alt="popular-img-3" class="popular_img" />
-            <h3 class="popular_name">Scalable Virtual Spaces</h3>
-            <span class="popular_description">Our team designs scalable virtual environments that boast expansive and
-              adaptive characteristics, providing endless possibilities to host intricate simulations</span>
-            <button class="popular_button">
-              <i class="ri-external-link-line"></i>
-            </button>
-          </article>
-          <!-- popular_card  -->
-          <article class="popular_card">
-            <img src="img/popular-img-4.png" alt="popular-img-4" class="popular_img" />
-            <h3 class="popular_name">Real-world Integration</h3>
-            <span class="popular_description">Our virtual spaces can be integrated with real-world data, ensuring that
-              it is not just an isolated environment but a functional extension of your real-world operations.</span>
-            <button class="popular_button">
-              <i class="ri-external-link-line"></i>
-            </button>
-          </article>
-          <!-- popular_card  -->
-          <article class="popular_card">
-            <img src="img/popular-img-5.png" alt="popular-img-5" class="popular_img" />
-            <h3 class="popular_name">Seamless Performance</h3>
-            <span class="popular_description">Through optimization techniques and performance testing, we guarantee that
-              the users will have a seamless and lag-free experience across devices.</span>
-            <button class="popular_button">
-              <i class="ri-external-link-line"></i>
-            </button>
-          </article>
-          <!-- popular_card  -->
-          <article class="popular_card">
-            <img src="img/popular-img-6.png" alt="popular-img-6" class="popular_img" />
-            <h3 class="popular_name">Travel and Leisure</h3>
-            <span class="popular_description">Whether your team is spread across different locations or you need to
-              conduct immersive tours, our virtual spaces offer a seamless platform for travel and leisure to
-              users.</span>
-            <button class="popular_button">
-              <i class="ri-external-link-line"></i>
-            </button>
-          </article>
-          <!-- popular_card  -->
-          <article class="popular_card">
-            <img src="img/popular-img-7.png" alt="popular-img-7" class="popular_img" />
-            <h3 class="popular_name">Healthcare Practice</h3>
-            <span class="popular_description">Enhance remote consultations and improve collaboration among medical
-              teams. With our virtual spaces, you can take your healthcare practice to new heights of
-              patient-centricity.</span>
-            <button class="popular_button">
-              <i class="ri-external-link-line"></i>
-            </button>
-          </article>
-          <!-- popular_card  -->
-          <article class="popular_card">
-            <img src="img/popular-img-8.png" alt="popular-img-8" class="popular_img" />
-            <h3 class="popular_name">Post-Launch Support</h3>
-            <span class="popular_description">Our relationship doesn’t end at launch. We offer continuous support and
-              updates, ensuring that your virtual spaces remain at the forefront of industry standards</span>
-            <button class="popular_button">
-              <i class="ri-external-link-line"></i>
-            </button>
-          </article>
-        </div>
-      </section>
-      <!-- recently -->
-      <section class="recently section" id="recently">
-        <div class="recentily_container container grid">
-          <div class="recently_data">
-            <span class="section_subtitle">From Physical to Virtual</span>
-            <h2 class="section_title">
-              Revolutionize Your World with 3D Space
-            </h2>
-            <p class="recently_description">
-              Crafting immersive environments from the ground up, we transport your reality into the metaverse.
-              Experience the power of advanced 3D spaces and construct vibrant, interactive virtual realms.Experience
-              How Our Solutions Can Propel Your Business Forward with a Consultation.
-            </p>
-            <a href="javascript:void(0);" class="button">Request a custom quote and schedule<i
-                class="ri-arrow-right-line"></i></a>
-          </div>
-          <!-- recently_data -->
-          <img src="img/recently-modeling-sketchup.png" alt="recently-modeling-sketchup" class="recently_img" />
-        </div>
-        <img src="img/avatar4.png" alt="avatar4" class="recently_avatar-1" />
-        <img src="img/avatar5.png" alt="avatar5" class="recently_avatar-2" />
-      </section>
-
-      <!-- recently -->
-      <section class="newsletter section">
-        <div class="newletter_container container grid">
-          <div class="newsletter_content grid">
-            <div class="newsletter_data">
-              <h2 class="section_title">Join our newslette</h2>
-              <form action="javascript:void(0);" class="newsletter_form">
-                <input type="emali" placeholder="enter email" class="newsletter_input" />
-                <button class="button newsletter_button">
-                  Subscribe <i class="ri-send-plane-line"></i>
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- newsletter -->
-      <footer class="footer">
-        <div class="footer_container container grid">
-          <div>
-            <a href="javascript:void(0)" class="footer_logo">
-              <b>CYBERFICTION*</b>
-            </a>
-            <p class="footer_description">
-              An avatar is more than just an image.<br />
-              It's an expression<br />
-              that brings your world to life.
-            </p>
-          </div>
-          <div class="footer_content">
-            <div>
-              <h3 class="footer_title">Main Menu</h3>
-              <ul class="footer_links">
-                <li><a href="javascript:void(0)" class="footer_link">Our Services</a></li>
-                <li><a href="javascript:void(0)" class="footer_link">FAQ</a></li>
-                <li><a href="javascript:void(0)" class="footer_link">Videos</a></li>
-                <li><a href="javascript:void(0)" class="footer_link">Events</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 class="footer_title">Information</h3>
-              <ul class="footer_links">
-                <li>
-                  <a href="javascript:void(0)" class="footer_link">Contact</a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)" class="footer_link">Offer</a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)" class="footer_link">Terms & Conditions</a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)" class="footer_link">Privacy Policy</a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 class="footer_title">Customization</h3>
-
-              <ul class="footer_links">
-                <li class="footer_information">
-                  <a href="#" class="footer_link">Avatar Design
-                  </a>
-                </li>
-                <li class="footer_information">
-                  <a href="javascript:void(0)" class="footer_link">Styling Options</a>
-                </li>
-                <li class="footer_information">
-                  <a href="javascript:void(0)" class="footer_link">3D Features</a>
-                </li>
-                <li class="footer_information">
-                  <a href="javascript:void(0)" class="footer_link">Virtual Clothing & Accessories</a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 class="footer_title">Social Media</h3>
-
-              <ul class="footer_social">
-                <a href="https://www.facebook.com/" target="_blank" class="footer_social-link">
-                  <i class="ri-facebook-box-line"></i>
-                </a>
-                <a href="https://www.instagram.com/" target="_blank" class="footer_social-link">
-                  <i class="ri-instagram-line"></i>
-                </a>
-                <a href="https://twitter.com/" target="_blank" class="footer_social-link">
-                  <i class="ri-twitter-x-line"></i>
-                </a>
-              </ul>
-            </div>
-          </div>
-          <!-- footer_content -->
-          <img src="img/avatar6.png" alt="avatar6" class="footer_avatar-1" />
-          <img src="img/avatar7.png" alt="avatar7" class="footer_avatar-2" />
-        </div>
-        <!-- footer_container -->
-        <div class="footer_info container">
-          <div class="footer_card">
-            <img src="img/footer-card.png" alt="footer-card" />
-          </div>
-          <div class="footer_copy">
-            &copy; Copyright All rights reserved
-            <!-- EntityCode -->
-          </div>
-        </div>
-        <!-- footer_info -->
-      </footer>
-    </div>
-    <!-- //contents -->
-
   </div>
 
-  <!-- scrollreveral -- Guide -->
-  <script src="https://unpkg.com/scrollreveal"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
