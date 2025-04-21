@@ -1,60 +1,49 @@
-// 스크롤 애니메이션 관리 함수
-function initializeScrollTrigger(target, start, end, scrub = 0.15) {
-  gsap.to(target, {
-    scrollTrigger: {
-      trigger: target,
-      scroller: "#main",
-      pin: true,
-      start: start,
-      end: end,
-      scrub: scrub,
-    }
-  });
-}
+function locomotive() {
+  gsap.registerPlugin(ScrollTrigger); //ScrollTrigger를 통해 스크롤 애니메이션을 관리하기위한 도구입니다.
 
-// 페이지별 스크롤 트리거 적용 함수
-function setupScrollAnimations() {
-  initializeScrollTrigger("#page1", "top top", "bottom top");
-  initializeScrollTrigger("#page2", "top top", "bottom top");
-  initializeScrollTrigger("#page3", "top top", "bottom top");
-}
-
-// Locomotive Scroll 초기화
-function initLocomotiveScroll() {
-  gsap.registerPlugin(ScrollTrigger);
-
+  /* SMOOTH SCROLL */
   const locoScroll = new LocomotiveScroll({
     el: document.querySelector("#main"),
     smooth: true,
   });
+  //locoScroll객체를 생성, 스크롤 관련 동작을 제어하는데 사용됩니다.
+  // el: document.querySelector("#main")--> #main이라는 CSS선택자로 해당하는 HTML요소를 스크롤 컨테이너로 지정합니다.(#main영역이 LocomotiveScroll이 적용되는 범위이다)
+  //smooth: true  --> 부드러운 스크롤을 활성화합니다.
 
-  locoScroll.on("scroll", ScrollTrigger.update);
+  locoScroll.on("scroll", ScrollTrigger.update); //LocomotiveScroll의 Scroll 이벤트가 발생할때마다 ScrollTrigger의 update함수를 호출합니다. 이것은 스크롤 이벤트와 ScrollTrigger간의 연동을 설정합니다.
 
   ScrollTrigger.scrollerProxy("#main", {
     scrollTop(value) {
-      return arguments.length ?
-        locoScroll.scrollTo(value, 0, 0) :
-        locoScroll.scroll.instance.scroll.y;
+      return arguments.length
+        ? locoScroll.scrollTo(value, 0, 0)
+        : locoScroll.scroll.instance.scroll.y;
     },
+    //ScrollTrigger의 스크롤프록시(스크롤에 대한 인테페이스를 제어,조작)를 설정한다. 이 부분은 ScrollTrigger가 LocomotiveScroll와 함께 작동하도록 만듦
+
     getBoundingClientRect() {
       return {
         left: 0,
         top: 0,
         width: window.innerWidth,
         height: window.innerHeight,
-      };
+      }; //뷰포트의 크기를 반환하는 getBoundingClientRect() 함수를 정의함
     },
-    pinType: document.querySelector("#main").style.transform ? "transform" : "fixed",
-  });
+    pinType: document.querySelector("#main").style.transform
+      ? "transform"
+      : "fixed",
+  }); //pinType은 #main 요소의 스타일 속성 transform이 설정되어 있으면 transform으로 , 그렇지 않으면 "fixed"로 설정함
 
+  // "refresh" 이벤트를 감지하면 locoScroll.update() 함수를 호출하여 LocomotiveScroll을 업데이트합니다. 스크롤 컨테이너나 내용이 동적으로 변경될 때 사용됩니다.
   ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
-  ScrollTrigger.refresh();
-}
 
-// 캔버스 애니메이션
-function initCanvasAnimation() {
+  ScrollTrigger.refresh(); //ScrollTrigger를 초기화하고 설정을 적용합니다.
+}
+locomotive();
+//---------------------------------------------
+
+function canvas() {
   const canvas = document.querySelector("#myCanvas");
-  const context = canvas.getContext("2d");
+  const context = canvas.getContext("2d"); //canvas사용의 필수
 
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -65,37 +54,8 @@ function initCanvasAnimation() {
     render();
   });
 
-  // 이미지 로딩
-  const frameCount = 300;
-  const images = [];
-  const imageSeq = {
-    frame: 0
-  };
-
-  for (let i = 0; i < frameCount; i++) {
-    const img = new Image();
-    img.src = getImageSrc(i);
-    images.push(img);
-  }
-
-  gsap.to(imageSeq, {
-    frame: frameCount - 1,
-    snap: "frame",
-    ease: "none",
-    scrollTrigger: {
-      scrub: 0.15,
-      trigger: "#page > canvas",
-      start: "top top",
-      end: "600% top",
-      scroller: "#main",
-    },
-    onUpdate: render,
-  });
-
-  images[0].onload = render;
-
-  function getImageSrc(index) {
-    const data = `./img/male0001.png
+  function files(index) {
+    var data = `./img/male0001.png
     ./img/male0002.png
     ./img/male0003.png
      ./img/male0004.png
@@ -394,9 +354,41 @@ function initCanvasAnimation() {
      ./img/male0297.png
      ./img/male0298.png
      ./img/male0299.png
-     ./img/male0300.png`; // 이미지 경로 데이터
+     ./img/male0300.png`;
+
+ 
+
     return data.split("\n")[index];
   }
+
+  const frameCount = 300; //이미지전체갯수
+  const images = [];
+  const imageSeq = {
+    frame: 0,
+  };
+
+  for (let i = 0; i < frameCount; i++) {
+    const img = new Image(); //img태그만들기
+    img.src = files(i);
+    images.push(img);
+  }
+  //console.log(images)
+
+  gsap.to(imageSeq, {
+    frame: frameCount - 1, //마지막 프레임의 index번호
+    snap: "frame", //"frame"은 프레임 단위로 값을 맞추겠다는 의미
+    ease: "none",
+    scrollTrigger: {
+      scrub: 0.15,
+      trigger: "#page>canvas",
+      start: "top top",
+      end: "600% top",
+      scroller: "#main",
+    },
+    onUpdate: render, //gsap.to가 변할때마다 업데이트가 일어남
+  });
+
+  images[0].onload = render;
 
   function render() {
     scaleImage(images[imageSeq.frame], context);
@@ -406,79 +398,105 @@ function initCanvasAnimation() {
     let canvas = ctx.canvas;
     let hRatio = canvas.width / img.width;
     let vRatio = canvas.height / img.height;
+
+    console.log(hRatio + "," + vRatio);
+
+    //let ratio=Math.max(10, 20)//가장큰수를 찾음//20
+
+    //이미지 500*500
+    //넓은 화면일때 화면의 넓이가 1000 * 600 이라고 가정하면
+    //hRatio =1000/500 =2  vRatio=600/500 = 1.2   ==>ratio=2
+
+    //넓은 화면일때 화면의 넓이가 400 * 600 이라고 가정하면
+    //hRatio =400/500 =0.8  vRatio=600/500 = 1.2   ==>ratio=1.2
     let ratio = Math.max(hRatio, vRatio);
     let centershift_x = (canvas.width - img.width * ratio) / 2;
     let centershift_y = (canvas.height - img.height * ratio) / 2;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(img, 0, 0, img.width, img.height, centershift_x, centershift_y, img.width * ratio, img.height * ratio);
+    ctx.clearRect(0, 0, canvas.width, canvas.height); //화면정리
+    //canvas에 이미지를 표현할때 drawImage(이미지, sx, sy, swidth, sheight,dx, dy, dwidth, dheight)  //sx, sy, swidth --> 소스자체 //dx, dy, dwidth, dheight-->소스가 만들어진후 설정
+    ctx.drawImage(
+      img,
+      0,
+      0,
+      img.width,
+      img.height,
+      centershift_x,
+      centershift_y,
+      img.width * ratio,
+      img.height * ratio
+    );
   }
 
   ScrollTrigger.create({
-    trigger: "#page > canvas",
-    scroller: "#main",
-    pin: true,
-    start: "top top",
-    end: "600% top",
+    trigger: "#page>canvas", //애니메이션이 시작될 요소
+    scroller: "#main", //스크롤이 발생하는 요소
+    pin: true, //스크롤하는 동안 트리거 요소 고정시킴
+    start: "top top", //애니메이션 시작
+    end: "600% top", //애니메이션 종료
   });
-}
+} //canvas()
 
-// 테마 토글
-function setupThemeToggle() {
-  const themeButton = document.getElementById("theme-button");
-  const iconTheme = "ri-sun-line";
-  const darkTheme = "dark-theme";
+canvas();
+//---------------------
 
-  let getCurrentTheme = () => {
-    return document.body.classList.contains(darkTheme) ? "dark" : "light";
-  };
-
-  let getCurrentIcon = () => {
-    return themeButton.classList.contains(iconTheme) ? "ri-moon-line" : "ri-sun-line";
-  };
-
-  themeButton.addEventListener("click", () => {
-    document.body.classList.toggle(darkTheme);
-    themeButton.classList.toggle(iconTheme);
-    localStorage.setItem("selected-theme", getCurrentTheme());
-    localStorage.setItem("selected-icon", getCurrentIcon());
-  });
-
-  let selectedTheme = localStorage.getItem("selected-theme");
-  let selectedIcon = localStorage.getItem("selected-icon");
-
-  if (selectedTheme) {
-    document.body.classList[selectedTheme === "dark" ? "add" : "remove"](darkTheme);
-    themeButton.classList[selectedIcon === "ri-moon-line" ? "add" : "remove"](iconTheme);
-  }
-}
-
-// 페이지 로드 후 초기화
-window.onload = function () {
-  initLocomotiveScroll();
-  setupScrollAnimations();
-  initCanvasAnimation();
-  setupThemeToggle();
-};
-
-// 헤더 배경 변경
-function scrollHeader() {
-  const header = document.querySelector("#header");
-  window.pageYOffset >= 50 ? header.classList.add("bg-header") : header.classList.remove("bg-header");
-}
-
-window.addEventListener("scroll", scrollHeader);
-
-
-// 모바일 메뉴
-let navToggle = document.getElementById("nav_toggle");
-let navMenu = document.getElementById("nav_menu");
-let navClose = document.getElementById("nav_close");
-
-navToggle.addEventListener("click", () => {
-  navMenu.classList.add("show-menu");
+gsap.to("#page1", {
+    scrollTrigger:{
+        trigger: "#page1", //애니메이션이 시작될 요소
+        scroller: "#main", //스크롤이 발생하는 요소
+        pin: true, //스크롤하는 동안 트리거 요소 고정시킴
+        start: "top top", //애니메이션 시작
+        end: "bottom top", //애니메이션 종료
+        
+    }
 });
 
-navClose.addEventListener("click", () => {
-  navMenu.classList.remove("show-menu");
+gsap.to("#page2", {
+    scrollTrigger:{
+        trigger: "#page2", //애니메이션이 시작될 요소
+        scroller: "#main", //스크롤이 발생하는 요소
+        pin: true, //스크롤하는 동안 트리거 요소 고정시킴
+        start: "top top", //애니메이션 시작
+        end: "bottom top", //애니메이션 종료
+    }
 });
+gsap.to("#page3", {
+    scrollTrigger:{
+        trigger: "#page3", //애니메이션이 시작될 요소
+        scroller: "#main", //스크롤이 발생하는 요소
+        pin: true, //스크롤하는 동안 트리거 요소 고정시킴
+        start: "top top", //애니메이션 시작
+        end: "bottom top", //애니메이션 종료
+    }
+});
+
+// javascript에서 img태그를 만드는 방법
+//<img src="" alt="">
+// 1) let imgEle=document.createElement('img')
+// imgEle.src="이미지경로";
+// imgEle.alt="이미지설명";
+// document.body.appendChild(imgEle)
+
+//2)let imgEle = new Image()//이미지태그 만들기
+// console.log(imgEle)
+// imgEle.src="../img.jpg"
+// imgEle.alt="이미지설명"
+
+// gsap.to("#page>canvas",{
+//     scrollTrigger:{
+//         trigger:"#page>canvas",//애니메이션이 시작될 요소
+//         scroller:"#main",//스크롤이 발생하는 요소
+//         pin:true,//스크롤하는 동안 트리거 요소 고정시킴
+//         start:"top top",//애니메이션 시작
+//         end:"600%  top" //애니메이션 종료
+
+//     }
+// })
+
+// ScrollTrigger.create({
+//     trigger:"#page>canvas",//애니메이션이 시작될 요소
+//         scroller:"#main",//스크롤이 발생하는 요소
+//         pin:true,//스크롤하는 동안 트리거 요소 고정시킴
+//         start:"top top",//애니메이션 시작
+//         end:"600%  top" //애니메이션 종료
+// })
